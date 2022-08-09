@@ -24,10 +24,13 @@ function App() {
   return (
     
     <div className="container App">
-    <TaskList userTasks={userTasks} />
+    
     <Tasks />
     <Routes>
-      <Route  path="/login" element ={<LoginPage />}/>
+      <Route  path="/login" element ={
+        <LoginPage>
+          <TaskList userTasks={userTasks} />
+        </LoginPage>}/>
       <Route  path="/signup" element ={<SignupPage />}/>
     
     </Routes>

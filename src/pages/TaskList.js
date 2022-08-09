@@ -1,13 +1,18 @@
-
+import React from "react";
 
 function TaskList(props){
-    {props.userTasks.map((task) => {
+    const tasks = props.userTasks.map((userTasks) => {
     return(
         <>
-        <h2>{task.title}</h2>
-        <h2>{task.description}</h2>
+        <h2>{userTasks.title}</h2>
+        <h2>{userTasks.description}</h2>
         </>
     )
-})}
+})
+return(
+    <div className="tasks">
+    {tasks}
+    </div>
+)
 }
 export default TaskList;
