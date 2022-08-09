@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-function CreateTask(modal, toggle){
+function CreateTask({modal, toggle, newTask}){
     const [myTask, setMyTask ] = useState("")
     const [description, setDescription ] = useState("")
     const handleChange = (e) => { const{name, value} = e.target 
-if (name === myTask ) {setMyTask(value)}else{setDescription(value)}
+if (name === "myTask" ) {setMyTask(value)}else{setDescription(value)}
 }
     return(
         <Modal isOpen={modal} toggle={toggle}>

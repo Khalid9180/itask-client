@@ -4,6 +4,8 @@ import CreateTask from "../Modals/CreateTask";
 function Tasks(){
     const [modal, setModal] = useState(false)
     const toggle = () => {setModal(!modal)}
+    const [taskCard, setCard] = useState([])
+    const addTask = (element) => {setCard(taskCard.push(element))}
     return(
     <>
         <div className="header">
@@ -13,7 +15,7 @@ function Tasks(){
         <div className="taskCards">
 
         </div>
-        <CreateTask toggle = {toggle} modal = {modal} />
+        <CreateTask toggle = {toggle} modal = {modal} newTask={addTask}/>
     </>
     )
 }
