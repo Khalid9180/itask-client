@@ -1,39 +1,57 @@
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import React, {useEffect, useState} from 'react';
-import Tasks from './components/Tasks';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import axios from 'axios';
-import TaskList from './pages/TaskList';
-function App() {
-  const[userTasks, setTasks]= useState([])
-  const storedToken = localStorage.getItem("authToken")
-  const myTasks = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/task`, { headers: { Authorization: `Bearer ${storedToken}` } })
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleCheck,
+  faPen,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from "react";
+import TaskList from "./components/TaskList";
+import LoginPage from "./Modals/LoginPage";
+import SignupPage from "./Modals/SignupPage";
+import axios from "axios";
+import TaskList1 from "./Modals/TaskList1";
+import IsAnon from "./components/IsAnon";
+import Navbar from "./components/Navbar";
+import CreateTask from "./Modals/CreateTask";
+import IsPrivate from "./components/IsPrivate";
 
-    .then((response) => {
-      setTasks(response.data)
-    })
-  }
-  useEffect(() => {myTasks()}, [])
-  console.log(userTasks)
+
+function App() {
+  const [userTasks, setTasks] = useState([]);
+  const storedToken = localStorage.getItem("authToken");
+  const getAllTasks = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/task`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+
+      .then((response) => {
+        setTasks(response.data);
+      });
+  };
+  useEffect(() => {
+    getAllTasks();   
+  }, []);
   return (
-    
     <div className="container App">
-    
-    <Tasks />
-    <Routes>
-      <Route  path="/login" element ={
-        <LoginPage>
-          <TaskList userTasks={userTasks} />
-        </LoginPage>}/>
-      <Route  path="/signup" element ={<SignupPage />}/>
-    
-    </Routes>
+      <Navbar/>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <IsPrivate>
+              <TaskList getAllTasks={getAllTasks} />
+              <TaskList1 userTasks={userTasks} />
+            </IsPrivate>
+          }
+        />
+        <Route path="/login" element={<IsAnon><LoginPage/>
+          </IsAnon>} />
+        <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
+      </Routes>
     </div>
   );
 }
