@@ -7,14 +7,6 @@ function TaskList(props) {
   const toggle = () => {
     setModal(!modal);
   };
-  const [taskList, setList] = useState([]);
-  const addTask = (element) => {
-    setList((prevTaskList) => {
-        const thatTask = [...prevTaskList]
-        thatTask.push(element)
-        return thatTask
-    });
-  };
 
   return (
     <>

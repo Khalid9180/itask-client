@@ -16,6 +16,7 @@ import TaskList1 from "./Modals/TaskList1";
 import IsAnon from "./components/IsAnon";
 import Navbar from "./components/Navbar";
 import CreateTask from "./Modals/CreateTask";
+import TaskCard from "./components/TaskCard";
 import IsPrivate from "./components/IsPrivate";
 
 
@@ -44,7 +45,7 @@ function App() {
           element={
             <IsPrivate>
               <TaskList getAllTasks={getAllTasks} />
-              <TaskList1 userTasks={userTasks} />
+              <TaskList1 userTasks={userTasks} getAllTasks={getAllTasks}  />
             </IsPrivate>
           }
         />
