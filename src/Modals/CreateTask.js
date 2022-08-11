@@ -41,7 +41,7 @@ function CreateTask({ modal, toggle, getAllTasks }) {
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Add Task</ModalHeader>
       <ModalBody>
-        <form on onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>New Task</label>
             <input

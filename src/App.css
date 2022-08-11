@@ -6,4 +6,13 @@
   width: 100%;
   padding-top: 50px;
   background-color: gainsboro
+
+}
+
+.LoginPage{
+  background: linear-gradient(to right, rgb(204, 130, 130), rgb(100, 45, 45))
+}
+
+.SignupPage{
+  background: linear-gradient(to right, rgb(204, 130, 130), rgb(100, 45, 45))
 }

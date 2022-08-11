@@ -17,6 +17,7 @@ import IsAnon from "./components/IsAnon";
 import Navbar from "./components/Navbar";
 import CreateTask from "./Modals/CreateTask";
 import TaskCard from "./components/TaskCard";
+import EditTask from "./Modals/EditTask";
 import IsPrivate from "./components/IsPrivate";
 
 
@@ -40,8 +41,9 @@ function App() {
     <div className="container App">
       <Navbar/>
       <Routes>
+        <Route path="/edit-task/:id" element={<EditTask getAllTasks={getAllTasks}/>}/>
         <Route
-          path="/"
+          path="/tasks"
           element={
             <IsPrivate>
               <TaskList getAllTasks={getAllTasks} />
